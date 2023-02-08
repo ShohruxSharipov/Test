@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         next = findViewById(R.id.next)
         prev = findViewById(R.id.previus)
         group = findViewById(R.id.radioGroup)
+        finish = findViewById(R.id.finish)
         var index = 0
         list.add(Test("1*1", "1", "2", "3", "4", false))
         list.add(Test("2*2", "12", "4", "9", "13", false))
@@ -47,13 +48,18 @@ class MainActivity : AppCompatActivity() {
 
         createTest(index)
         next.setOnClickListener {
+
             if (index < list.size - 1) {
                 index++
                 createTest(index)
             }
+            if (index == list.size - 1){
+                finish.visibility = View.VISIBLE
+            }
         }
 
         prev.setOnClickListener {
+                finish.visibility = View.INVISIBLE
             if (index < list.size - 1 && index != 0) {
                 index--
                 createTest(index)
